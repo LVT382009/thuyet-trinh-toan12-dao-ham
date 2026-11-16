@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ứng dụng đạo hàm vào bài toán thực tế — Toán 12 · Bài 5 · SGK Kết nối tri thức</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/fonts/fonts-extra.css">
+<link rel="stylesheet" href="assets/katex/katex.min.css">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div id="viewport">
+<div class="stage" id="stage">
+
+  <!-- ================= SLIDE 1 · COVER ================= -->
+  <section class="slide s1" data-title="Bìa">
+    <div class="chrome-top">
+      <span class="eyebrow">Toán 12 · Tập một · Kết nối tri thức</span>
+      <span class="pagetag">SGK <b>trang 33–41</b></span>
+    </div>
+    <div class="inner">
+      <div class="cover-grid">
+        <div>
+          <div class="kick rv" style="--d:.05s">
+            <span class="tag a">Bài 5</span>
+            <span class="tag">Ứng dụng đạo hàm</span>
+          </div>
+          <h1 class="rv" style="--d:.14s">
+            <span class="l1">Ứng dụng <span class="em">đạo hàm</span></span>
+            <span class="l2">vào bài toán <span class="cy">thực tế</span></span>
+          </h1>
+          <p class="sub rv" style="--d:.24s">Tốc độ thay đổi tức thời · Bài toán tối ưu hoá ·
+            Hàm cầu – doanh thu – lợi nhuận. Một hành trình từ <b>sân vận động</b>,
+            <b>con thuyền của anh An</b> đến <b>cái ti vi</b> trong nhà bạn.</p>
+          <div class="q rv" style="--d:.34s">
+            <span class="qb">?</span>
+            <span class="qt">“Nếu bạn là chủ sân vận động, bạn định giá vé bao nhiêu?”</span>
+          </div>
+          <div class="meta rv" style="--d:.44s">
+            <span class="chip"><span class="k">Nhà xuất bản</span> Giáo dục Việt Nam</span>
+            <span class="chip"><span class="k">Tổng Chủ biên</span> Hà Huy Khoái</span>
+            <span class="chip"><span class="k">Bản quyền</span> © 2024</span>
+          </div>
+        </div>
+        <div class="art rv rv-pop" style="--d:.3s">
+          <!-- stadium illustration -->
+          <svg viewBox="0 0 760 760" fill="none" aria-label="Sân vận động và vé bóng đá 95 nghìn đồng">
+            <defs>
+              <linearGradient id="gAmber" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#B5851F"/><stop offset="1" stop-color="#96691A"/>
+              </linearGradient>
+              <linearGradient id="gCyan" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#3E93A5"/><stop offset="1" stop-color="#25788A"/>
+              </linearGradient>
+              <radialGradient id="gGlow" cx=".5" cy=".42" r=".55">
+                <stop offset="0" stop-color="#A87A20" stop-opacity=".22"/>
+                <stop offset="1" stop-color="#A87A20" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="380" cy="360" r="330" fill="url(#gGlow)"/>
+            <!-- floodlight glows -->
+            <g class="float" style="animation-delay:-2s">
+              <circle cx="120" cy="150" r="7" fill="#B5851F"/>
+              <circle cx="140" cy="150" r="7" fill="#B5851F"/><circle cx="160" cy="150" r="7" fill="#B5851F"/>
+              <circle cx="120" cy="170" r="7" fill="#B5851F"/><circle cx="140" cy="170" r="7" fill="#B5851F"/><circle cx="160" cy="170" r="7" fill="#B5851F"/>
+              <rect x="112" y="182" width="56" height="6" rx="3" fill="#B5AD99"/>
+              <rect x="136" y="188" width="8" height="150" rx="4" fill="#A39B86"/>
+            </g>
+            <g class="float" style="animation-delay:-4.5s">
+              <circle cx="640" cy="150" r="7" fill="#3E93A5"/>
+              <circle cx="660" cy="150" r="7" fill="#3E93A5"/><circle cx="680" cy="150" r="7" fill="#3E93A5"/>
+              <circle cx="640" cy="170" r="7" fill="#3E93A5"/><circle cx="660" cy="170" r="7" fill="#3E93A5"/><circle cx="680" cy="170" r="7" fill="#3E93A5"/>
+              <rect x="632" y="182" width="56" height="6" rx="3" fill="#B5AD99"/>
+              <rect x="656" y="188" width="8" height="150" rx="4" fill="#A39B86"/>
+            </g>
+            <!-- stands -->
+            <ellipse cx="380" cy="360" rx="300" ry="252" fill="#E9F1EC" stroke="#22704F" stroke-width="1.5"/>
+            <ellipse cx="380" cy="360" rx="262" ry="218" fill="none" stroke="#2C5470" stroke-width="1.5" stroke-dasharray="3 7"/>
+            <ellipse cx="380" cy="360" rx="228" ry="188" fill="#D9E9E1" stroke="#2C5470" stroke-width="1.5"/>
+            <!-- crowd dots -->
+            <g id="crowd"></g>
+            <!-- pitch -->
+            <ellipse cx="380" cy="360" rx="176" ry="140" fill="#C9E7D4" stroke="#22704F" stroke-width="1.5"/>
+            <ellipse cx="380" cy="360" rx="176" ry="140" fill="none" stroke="#1F7A54" stroke-width="1" opacity=".55"/>
+            <ellipse cx="380" cy="360" rx="60" ry="48" fill="none" stroke="#2E7D4F" stroke-width="1.4" opacity=".8"/>
+            <line x1="380" y1="220" x2="380" y2="500" stroke="#2E7D4F" stroke-width="1.4" opacity=".8"/>
+            <!-- ticket -->
+            <g class="float">
+              <rect x="300" y="520" width="230" height="112" rx="16" fill="#FFFFFF" stroke="url(#gAmber)" stroke-width="2"/>
+              <line x1="300" y1="560" x2="530" y2="560" stroke="#A87A20" stroke-width="1.4" stroke-dasharray="5 6" opacity=".7"/>
+              <circle cx="300" cy="560" r="12" fill="#FFFFFF" stroke="#A87A20" stroke-width="1.6"/>
+              <circle cx="530" cy="560" r="12" fill="#FFFFFF" stroke="#A87A20" stroke-width="1.6"/>
+              <text x="318" y="548" fill="#6B6656" font-family="IBM Plex Mono" font-size="14" letter-spacing="2">VÉ BÓNG ĐÁ</text>
+              <text x="318" y="610" fill="#B5851F" font-family="Playfair Display" font-weight="800" font-size="42">95</text>
+              <text x="392" y="610" fill="#6B6656" font-family="Be Vietnam Pro" font-size="15">nghìn đồng</text>
+            </g>
+            <!-- ball -->
+            <g class="float" style="animation-delay:-3.2s">
+              <circle cx="600" cy="590" r="34" fill="#FFFFFF" stroke="#1A160E" stroke-width="2"/>
+              <path d="M600 566l12 9-5 15h-14l-5-15z" fill="#1A160E"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 2 · VÉ BÓNG ĐÁ ================= -->
+  <section class="slide s2" data-title="Vé bóng đá">
+    <div class="chrome-top">
+      <span class="eyebrow">Mở đầu · Trang 33</span>
+      <span class="pagetag">Dạng chính · Ví dụ 6 <b>tr. 38–39</b></span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Vé bóng đá — <span class="em">tối đa hoá doanh thu</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Bài toán mở đầu SGK</span>
+          <span class="tag c">Hàm bậc hai</span>
+        </div>
+      </div>
+
+      <div class="cols c57">
+        <div class="col">
+          <div class="card rv" style="--d:.14s">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h5"/></svg></span>
+              <h3>Đề bài — nguyên văn SGK trang 33</h3>
+            </div>
+            <p style="font-size:16.5px;line-height:1.5;color:var(--ink2)">
+              Một đội bóng đá thi đấu trong một sân vận động có sức chứa <b class="amber">55 000</b> khán giả.
+              Với giá mỗi vé là <b class="amber">100 nghìn đồng</b>, số khán giả trung bình là <b class="amber">27 000</b> người.
+              Qua thăm dò dư luận, người ta thấy rằng mỗi khi giá vé giảm thêm <b class="amber">10 nghìn đồng</b>,
+              sẽ có thêm khoảng <b class="amber">3 000</b> khán giả. Hỏi ban tổ chức nên đặt giá vé là bao nhiêu
+              để doanh thu từ tiền bán vé là lớn nhất?
+            </p>
+          </div>
+
+          <div class="card rv" style="--d:.22s">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              <h3>Lời giải — Ví dụ 6, trang 38–39</h3>
+              <span class="sub">đặt p = giá vé (nghìn đồng)</span>
+            </div>
+            <div class="rows">
+              <div class="row"><span class="mk">1</span><span>Hàm cầu đi qua <span class="mono">(27 000; 100)</span> và <span class="mono">(30 000; 90)</span>:
+                \(p-100=-\dfrac{1}{300}(x-27000)\) ⇔ <b class="amber">\(x=-300p+57000\)</b></span></div>
+              <div class="row"><span class="mk">2</span><span>Doanh thu: <b>\(R(p)=p\cdot x=-300p^{2}+57000p\)</b></span></div>
+              <div class="row"><span class="mk">3</span><span>\(R'(p)=-600p+57000=0\) ⇔ <b class="amber">\(p=95\)</b></span></div>
+              <div class="row"><span class="mk">4</span><span>Bảng biến thiên cho \(R\) đạt <b class="amber">cực đại</b> tại \(p=95\).</span></div>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.3s">
+            <div class="small mono" style="margin-bottom:8px;letter-spacing:.14em;color:var(--faint)">BẢNG BIẾN THIÊN · SGK TR. 38</div>
+            <table class="tbl">
+              <thead><tr><th>\(p\)</th><th>\(R'(p)\)</th><th>\(R(p)\)</th></tr></thead>
+              <tbody>
+                <tr class="rv" style="--d:.34s"><td class="mono">0</td><td class="mono green">+</td><td class="mono">0</td></tr>
+                <tr class="rv" style="--d:.38s"><td class="mono amber">95</td><td class="mono">0</td><td class="mono amber">2 707 500</td></tr>
+                <tr class="rv" style="--d:.42s"><td class="mono">+∞</td><td class="mono coral">−</td><td class="mono">−∞</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="stats rv" style="--d:.18s">
+            <div class="stat"><div class="k">Sức chứa</div><div class="v">55 000</div></div>
+            <div class="stat"><div class="k">Giá khởi điểm</div><div class="v">100<small>nghìn đồng</small></div></div>
+            <div class="stat"><div class="k">Khán giả TB</div><div class="v">27 000</div></div>
+            <div class="stat"><div class="k">Mỗi lần giảm</div><div class="v">−10<small>nghìn → +3 000</small></div></div>
+          </div>
+          <div class="card rv" style="--d:.26s;display:flex;flex-direction:column">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M7 15c4-1 5-8 10-9"/></svg></span>
+              <h3>Đồ thị \(R(p)\)</h3>
+              <span class="sub">đơn vị: triệu đồng</span>
+            </div>
+            <div class="chart" id="ch-rp" style="height:380px"></div>
+            <div class="legend" style="margin-top:10px">
+              <span><i style="background:var(--amber)"></i>Đồ thị \(R(p)\)</span>
+              <span><i style="background:var(--cyan)"></i>Đỉnh \(p=95\)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="result rv" style="--d:.34s;margin-top:22px">
+        <div>
+          <span class="r-lab">Kết luận</span>
+          <span class="r-main">Giá vé <span class="amber" data-count="95">0</span> nghìn đồng</span>
+        </div>
+        <div class="r-sub">
+          Doanh thu lớn nhất <b class="amber mono" data-count="2707500">0</b> nghìn ≈ <b class="amber">2,71 tỷ đồng</b><br>
+          Số khán giả <b class="mono">\(x=28\,500\)</b> &lt; 55 000 — nằm trong miền khả thi ✓
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 3 · TỐC ĐỘ THAY ĐỔI ================= -->
+  <section class="slide s3" data-title="Tốc độ thay đổi">
+    <div class="chrome-top">
+      <span class="eyebrow">Công cụ · Trang 33–34</span>
+      <span class="pagetag">Mục 1 · Bài 5</span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Tốc độ thay đổi — <span class="em">từ trung bình đến tức thời</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Định nghĩa SGK</span>
+          <span class="tag c">5 ứng dụng</span>
+        </div>
+      </div>
+
+      <div class="cols c55">
+        <div class="col">
+          <div class="card stepcard rv" style="--d:.14s">
+            <h4>Trung bình · trên đoạn</h4>
+            <p>Hệ số góc <b class="cyan">dây cung</b> đi qua hai điểm \(A(x_1;f(x_1))\) và \(B(x_2;f(x_2))\) — “trung bình” trên đoạn \([x_1;x_2]\).</p>
+            <div class="big sm">\(\dfrac{\Delta y}{\Delta x}=\dfrac{f(x_2)-f(x_1)}{x_2-x_1}\)<small>hệ số góc dây cung</small></div>
+          </div>
+          <div class="card stepcard rv" style="--d:.2s">
+            <h4>Tức thời · tại một điểm</h4>
+            <p>Khi \(x_2\) tiến dần về \(x_1\), dây cung tiến đến <b class="amber">tiếp tuyến</b> — hệ số góc của tiếp tuyến chính là đạo hàm.</p>
+            <div class="big sm">\(\lim_{\Delta x\to 0}\dfrac{\Delta y}{\Delta x}=f'(x_1)\)<small>hệ số góc tiếp tuyến</small></div>
+          </div>
+          <div class="callout rv" style="--d:.26s;padding:12px 14px;font-size:14.5px">
+            <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>
+            <span><b>Như vậy,</b> đạo hàm \(f'(a)\) là <b>tốc độ thay đổi tức thời</b> của đại lượng
+              \(y=f(x)\) đối với \(x\) tại điểm \(x=a\). <span class="muted">(SGK trang 33)</span></span>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card rv" style="--d:.18s;display:flex;flex-direction:column">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17c5-14 13-14 18-14"/><path d="M3 17h18"/></svg></span>
+              <h3>Dây cung → tiếp tuyến</h3>
+              <button class="btn" id="btn-tangent" style="margin-left:auto;padding:9px 16px;font-size:13.5px">
+                <span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12a8 8 0 1 0 2-6"/><path d="M4 4v5h5"/></svg></span>
+                <span class="lbl">↻ Xem lại</span>
+              </button>
+            </div>
+            <div class="chart" id="ch-secant" style="height:310px"></div>
+            <div class="legend" style="margin-top:10px">
+              <span><i style="background:var(--cyan)"></i>Tiếp tuyến \(f'(x_1)\)</span>
+              <span><i style="background:var(--amber)"></i>Dây cung \(B(x_2)\)</span>
+              <span><i style="background:var(--violet)"></i>Dây cung \(B'(x_2')\)</span>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.24s">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></span>
+              <h3>Năm ứng dụng — nguyên văn SGK 33–34</h3>
+            </div>
+            <table class="tbl">
+              <thead><tr><th>Lĩnh vực</th><th>Hàm</th><th>Đạo hàm</th><th>Thuật ngữ</th></tr></thead>
+              <tbody>
+                <tr class="rv" style="--d:.28s"><td>Vật lí</td><td class="mono">\(s=s(t)\)</td><td class="mono">\(v=s'(t)\)</td><td>vận tốc tức thời</td></tr>
+                <tr class="rv" style="--d:.32s"><td>Vật lí</td><td class="mono">\(v=v(t)\)</td><td class="mono">\(a=v'(t)=s''(t)\)</td><td>gia tốc tức thời</td></tr>
+                <tr class="rv" style="--d:.36s"><td>Hoá học</td><td class="mono">\(C=C(t)\)</td><td class="mono">\(C'(t)\)</td><td>tốc độ phản ứng</td></tr>
+                <tr class="rv" style="--d:.40s"><td>Sinh học</td><td class="mono">\(P=P(t)\)</td><td class="mono">\(P'(t)\)</td><td>tốc độ tăng trưởng</td></tr>
+                <tr class="rv" style="--d:.44s"><td>Kinh tế</td><td class="mono">\(C=C(x)\)</td><td class="mono">\(C'(x)\)</td><td>chi phí biên</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 4 · QUY TRÌNH 3 BƯỚC ================= -->
+  <section class="slide s4" data-title="Quy trình 3 bước">
+    <div class="chrome-top">
+      <span class="eyebrow">Quy trình · Trang 36–37</span>
+      <span class="pagetag">Mục 2 · Bài 5</span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Ba bước giải bài toán <span class="em">tối ưu hoá</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Nguyên văn SGK</span>
+        </div>
+      </div>
+
+      <div class="cols c3" style="flex:1">
+        <div class="card stepcard rv" style="--d:.16s">
+          <span class="no">1</span>
+          <h4>Xác định đại lượng cần tối ưu</h4>
+          <p>Xác định đại lượng \(Q\) mà ta cần làm cho giá trị của đại lượng ấy <b>lớn nhất hoặc nhỏ nhất</b>
+            và biểu diễn nó qua các đại lượng khác trong bài toán.</p>
+          <div class="big">\(Q=?\)<small>đại lượng cần tối ưu</small></div>
+        </div>
+        <div class="card stepcard rv" style="--d:.24s">
+          <span class="no">2</span>
+          <h4>Chọn biến \(x\) — tìm tập xác định</h4>
+          <p>Chọn một đại lượng thích hợp, kí hiệu \(x\), biểu diễn các đại lượng khác theo \(x\).
+            Khi đó \(Q\) là hàm số một biến \(Q=Q(x)\). <b>Tìm tập xác định</b> của hàm số.</p>
+          <div class="big">\(Q=Q(x)\)<small>hàm số một biến + tập xác định</small></div>
+        </div>
+        <div class="card stepcard rv" style="--d:.32s">
+          <span class="no">3</span>
+          <h4>Tìm cực trị — rồi kết luận</h4>
+          <p>Tìm giá trị lớn nhất hoặc nhỏ nhất của \(Q=Q(x)\) bằng các phương pháp đã biết
+            (bao hàm, đạo hàm, bảng biến thiên…) và <b>kết luận</b>.</p>
+          <div class="big">\(Q'(x)=0\)<small>bảng biến thiên – cực trị – kết luận</small></div>
+        </div>
+      </div>
+
+      <div class="cols c55" style="flex:0 0 auto;margin-top:22px">
+        <div class="card rv" style="--d:.4s">
+          <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 4v16M4 12h16"/></svg></span>
+            <h3>Tối đa hoá — danh mục SGK</h3></div>
+          <p style="font-size:16.5px;color:var(--ink2);line-height:1.6">diện tích · khối lượng · lợi nhuận…</p>
+          <p class="small">Ví dụ: doanh thu vé bóng đá, lợi nhuận ti vi.</p>
+        </div>
+        <div class="card rv" style="--d:.46s">
+          <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20V4M4 12h16"/></svg></span>
+            <h3>Tối thiểu hoá — danh mục SGK</h3></div>
+          <p style="font-size:16.5px;color:var(--ink2);line-height:1.6">khoảng cách · thời gian · chi phí…</p>
+          <p class="small">Ví dụ: thời gian anh An, diện tích hộp trụ.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 5 · DẠNG 1 ================= -->
+  <section class="slide s5" data-title="Dạng 1 · Tốc độ tức thời">
+    <div class="chrome-top">
+      <span class="eyebrow">Dạng 1 · Đọc tốc độ thay đổi tức thời</span>
+      <span class="pagetag">Luyện tập 1 · Bài 1.26</span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Đọc tốc độ thay đổi <span class="em">tại một thời điểm</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Huyết áp · tr. 36</span>
+          <span class="tag c">Hạt chuyển động · tr. 40</span>
+        </div>
+      </div>
+
+      <div class="cols c55">
+        <div class="col">
+          <div class="card rv" style="--d:.14s">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h4l2-6 3 12 2-6h7"/></svg></span>
+              <h3>Huyết áp — Luyện tập 1</h3>
+              <span class="sub">SGK tr. 36</span>
+            </div>
+            <div class="formula" style="font-size:19px">
+              \(P(t)=\dfrac{25t^{2}+125}{t^{2}+1}=25+\dfrac{100}{t^{2}+1},\quad 0\le t\le 10\)
+            </div>
+            <div class="rows" style="margin-top:14px">
+              <div class="row"><span class="mk">′</span><span>\(P'(t)=-\dfrac{200t}{(t^{2}+1)^{2}}\)</span></div>
+              <div class="row"><span class="mk">=</span><span>\(P'(5)=-\dfrac{1000}{676}=-\dfrac{250}{169}\approx -1{,}4793\)<span class="muted">mmHg/s</span></span></div>
+            </div>
+            <div class="callout" style="margin-top:16px">
+              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+              <span>Dấu <b>âm</b> ⇒ huyết áp <b>đang giảm</b>, tốc độ giảm tức thời ≈ <b>1,48 mmHg mỗi giây</b> tại \(t=5\).</span>
+            </div>
+            <p class="small" style="margin-top:14px">Bẫy số: bản in trang 36 ghi <b class="amber">125</b>, không phải 123
+              (VnDoc ghi 123 là lỗi đánh máy). Nếu dùng 123 thì \(P'(5)\approx -1{,}4497\) — sai theo bản in.</p>
+          </div>
+
+          <div class="card rv" style="--d:.24s">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 3v4M12 17v4M3 12h4M17 12h4"/></svg></span>
+              <h3>Hạt chuyển động — Bài 1.26</h3>
+              <span class="sub">SGK tr. 40</span>
+            </div>
+            <p style="font-size:16px;color:var(--ink2)">\(y=t^{3}-12t+3,\ t\ge 0\) (mét; giây), trục thẳng đứng chiều dương hướng lên.</p>
+            <table class="tbl" style="margin-top:10px">
+              <tbody>
+                <tr class="rv" style="--d:.28s"><td class="mono amber">a</td><td>\(v(t)=3t^{2}-12\); \(a(t)=6t\)</td></tr>
+                <tr class="rv" style="--d:.32s"><td class="mono amber">b</td><td>Lên khi \(t&gt;2\); xuống khi \(0\le t&lt;2\)</td></tr>
+                <tr class="rv" style="--d:.36s"><td class="mono amber">c</td><td>\(y(0)=3,\ y(2)=-13,\ y(3)=-6\); <b>quãng đường 23 m</b>; độ dịch chuyển \(-9\) m</td></tr>
+                <tr class="rv" style="--d:.40s"><td class="mono amber">d</td><td>Giảm tốc \(0&lt;t&lt;2\); tăng tốc \(t&gt;2\) <span class="muted">(nghĩa vật lí: \(v\cdot a\gtrless 0\))</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card rv" style="--d:.2s;display:flex;flex-direction:column">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M6 15c3-2 5-8 9-9"/></svg></span>
+              <h3>Đồ thị \(P(t)\)</h3>
+              <span class="sub">mmHg · giây</span>
+            </div>
+            <div class="chart" id="ch-bp" style="height:360px"></div>
+            <div class="legend" style="margin-top:10px">
+              <span><i style="background:var(--cyan)"></i>\(P(t)\)</span>
+              <span><i style="background:var(--amber)"></i>Tiếp tuyến tại \(t=5\)</span>
+              <span><i style="background:var(--coral)"></i>\(P'(5)\approx -1{,}48\)</span>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.28s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v8M8 12h8"/></svg></span>
+              <h3>Chốt: dấu của \(f'(a)\)</h3></div>
+            <div class="compare">
+              <div class="ccard"><div class="ck">\(f'(a) &gt; 0\)</div><h4>Đang tăng</h4><p>đại lượng tăng tức thời tại \(x=a\).</p></div>
+              <div class="ccard"><div class="ck coral">\(f'(a) &lt; 0\)</div><h4>Đang giảm</h4><p>đại lượng giảm tức thời tại \(x=a\).</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 6 · DẠNG 2 · TỐI ƯU HOÁ ================= -->
+  <section class="slide s6" data-title="Dạng 2 · Tối ưu hoá">
+    <div class="chrome-top">
+      <span class="eyebrow">Dạng 2 · Tối ưu hoá</span>
+      <span class="pagetag">Luyện tập 2 · Ví dụ 5</span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Tối ưu hoá — <span class="em">chọn đúng điểm đặt cận</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Anh An chèo thuyền</span>
+          <span class="tag c">Hộp trụ 1 lít</span>
+        </div>
+      </div>
+
+      <div class="cols c55">
+        <div class="col">
+          <div class="card rv" style="--d:.14s">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6c3 2 6 2 9 0s6-2 9 0M3 12c3 2 6 2 9 0s6-2 9 0M3 18c3 2 6 2 9 0s6-2 9 0"/></svg></span>
+              <h3>Anh An chèo thuyền — Luyện tập 2</h3>
+              <span class="sub">SGK tr. 38 · Hình 1.35</span>
+            </div>
+            <div class="chart" id="ch-river" style="height:250px"></div>
+            <div class="rows" style="margin-top:14px">
+              <div class="row"><span class="mk">T</span><span>\(T(x)=\dfrac{\sqrt{9+x^{2}}}{6}+\dfrac{8-x}{8},\quad 0&lt;x&lt;8\)</span></div>
+              <div class="row"><span class="mk">=</span><span>\(T'(x)=\dfrac{x}{6\sqrt{9+x^{2}}}-\dfrac18=0 \Leftrightarrow x=\dfrac{9}{\sqrt7}\approx 3{,}4017\)<span class="muted">km</span></span></div>
+              <div class="row"><span class="mk">✓</span><span>\(T_{\min}=1+\dfrac{\sqrt7}{8}\approx 1{,}3307\)<span class="muted">giờ</span></span></div>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.22s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M8 12v6a4 4 0 0 0 8 0v-6"/></svg></span>
+              <h3>Hộp trụ 1 lít — Ví dụ 5</h3>
+              <span class="sub">SGK tr. 37 · có lời giải</span>
+            </div>
+            <div class="formula" style="font-size:18px">\(S(r)=2\pi r^{2}+\dfrac{2000}{r}\)</div>
+            <div class="cols c55" style="gap:18px;flex:0 0 auto;margin-top:12px">
+              <div class="rows" style="gap:8px">
+                <div class="row"><span class="mk">r</span><span>\(r=\sqrt[3]{\dfrac{500}{\pi}}\approx 5{,}4193\)<span class="muted">cm</span></span></div>
+                <div class="row"><span class="mk">h</span><span>\(h=\dfrac{100}{\sqrt[3]{250\pi}}\approx 10{,}8385\)<span class="muted">cm</span></span></div>
+                <p class="small" style="margin-top:2px">Chú ý SGK: hộp trụ tối ưu thì <b class="amber">chiều cao bằng đường kính đáy</b> — \(h=2r\).</p>
+              </div>
+              <div class="chart" id="ch-cyl" style="height:150px"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card rv" style="--d:.18s;display:flex;flex-direction:column">
+            <div class="card-h">
+              <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></span>
+              <h3>So sánh ba cách đi</h3>
+              <span class="sub">giờ</span>
+            </div>
+            <div class="chart" id="ch-timebar" style="height:420px"></div>
+            <div class="legend" style="margin-top:10px">
+              <span><i style="background:var(--green)"></i>Cột thấp nhất thắng</span>
+            </div>
+          </div>
+
+          <div class="result rv" style="--d:.26s">
+            <div>
+              <span class="r-lab">Anh An</span>
+              <span class="r-main" style="font-size:32px">Chèo đến \(D\): \(x\approx 3{,}4017\) km</span>
+            </div>
+            <div class="r-sub">\(T_{\min}\approx 1{,}3307\) giờ &lt; \(1{,}4240\) &lt; \(1{,}5\)<br>nghiệm bên trong nhỏ nhất ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 7 · DẠNG 3 · KINH TẾ ================= -->
+  <section class="slide s7" data-title="Dạng 3 · Kinh tế">
+    <div class="chrome-top">
+      <span class="eyebrow">Dạng 3 · Hàm cầu → doanh thu → lợi nhuận</span>
+      <span class="pagetag">Vận dụng · Bài 1.27–1.29</span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Chuỗi kinh tế — <span class="em">từ giá bán đến lợi nhuận</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Ti vi · tr. 40</span>
+          <span class="tag c">1.27 · 1.28 · 1.29</span>
+        </div>
+      </div>
+
+      <div class="cols c57">
+        <div class="col">
+          <div class="card rv" style="--d:.14s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M6 16L11 10l4 3 4-6"/></svg></span>
+              <h3>Ti vi — Vận dụng, trang 40</h3>
+              <span class="sub">1 000 chiếc/tuần · 14 triệu</span>
+            </div>
+            <table class="tbl">
+              <tbody>
+                <tr class="rv" style="--d:.18s"><td class="mono amber">a</td><td>\(p(x)=-\dfrac{x}{200}+19\)<span class="muted">(triệu đồng)</span></td></tr>
+                <tr class="rv" style="--d:.22s"><td class="mono amber">b</td><td>\(R(p)=-200p^{2}+3800p\); \(p=9{,}5\) ⇒ giảm <b>4,5 triệu</b></td></tr>
+                <tr class="rv" style="--d:.26s"><td class="mono amber">c</td><td>\(P(x)=-\dfrac{x^{2}}{200}+22x-12000\); \(P'=0\) ⇔ <b>\(x=2\,200\)</b> ⇒ giá <b>8 triệu</b></td></tr>
+              </tbody>
+            </table>
+            <div class="rows" style="margin-top:14px">
+              <div class="row"><span class="mk">✓</span><span>Kiểm: \(R(2200)=17\,600\); \(C(2200)=12\,000-6\,600=5\,400\); \(P=12\,200\)</span></div>
+            </div>
+            <div class="callout" style="margin-top:14px">
+              <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v6M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span>
+              <span><b>Điểm thảo luận:</b> \(C(x)=12\,000-3x\) — chi phí <b>giảm</b> khi bán nhiều hơn,
+                ngược trực giác nhưng <b>đúng như SGK in</b>. Nếu đổi thành \(+3x\): \(x=1600\), giá 11 triệu, \(P_{\max}=800\) — khác hẳn.</span>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.24s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V8l6-3 6 3v12M16 20v-9l4 2v7"/></svg></span>
+              <h3>Chung cư 100 căn — Bài 1.28</h3>
+            </div>
+            <div class="rows">
+              <div class="row"><span class="mk">§</span><span>\(R(x)=(8+0{,}1x)(100-x)=800+2x-0{,}1x^{2}\)</span></div>
+              <div class="row"><span class="mk">=</span><span>\(R'(x)=2-0{,}2x=0 \Leftrightarrow x=10\) ⇒ giá <b class="amber">9 triệu/tháng</b>, <b class="amber">90 căn</b>, \(R_{\max}=810\) <span class="muted">triệu</span></span></div>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.3s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M6 6c4 0 6 3 12 8"/></svg></span>
+              <h3>Hàm cầu 354 — Bài 1.29</h3>
+            </div>
+            <div class="rows">
+              <div class="row"><span class="mk">a</span><span>\(x(p)=\dfrac{35\,400}{p}-100\); tập xác định \((0;354]\); \(x(240)=47{,}5\)</span></div>
+              <div class="row"><span class="mk">b</span><span>\(x'(p)=-\dfrac{35\,400}{p^{2}}&lt;0\) ⇒ <b>nghịch biến</b>, không cực trị; tiệm cận đứng \(p=0\)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card rv" style="--d:.18s;display:flex;flex-direction:column">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M6 15c4-1 6-6 12-7"/></svg></span>
+              <h3>Doanh thu vs lợi nhuận</h3>
+              <span class="sub">hai đỉnh khác nhau</span>
+            </div>
+            <div class="chart" id="ch-tv" style="height:320px"></div>
+            <div class="legend" style="margin-top:10px">
+              <span><i style="background:var(--amber)"></i>\(R(x)\) — đỉnh \(x=1\,900\) · \(p=9{,}5\)</span>
+              <span><i style="background:var(--violet)"></i>\(P(x)\) — đỉnh \(x=2\,200\) · giá 8</span>
+            </div>
+          </div>
+
+          <div class="card rv" style="--d:.26s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 8l7-5 7 5"/></svg></span>
+              <h3>Chi phí biên — Bài 1.27</h3>
+            </div>
+            <div class="rows">
+              <div class="row"><span class="mk">a</span><span>\(C'(x)=50-x+0{,}00525x^{2}\)</span></div>
+              <div class="row"><span class="mk">b</span><span>\(C'(100)=2{,}5\)<span class="muted">(trăm nghìn) = 250 000 đồng</span></span></div>
+              <div class="row"><span class="mk">c</span><span>\(C(101)-C(100)=2{,}52675\)<span class="muted">(trăm nghìn) = 252 675 đồng</span> ≈ \(C'(100)\) ✓</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SLIDE 8 · CHỐT ================= -->
+  <section class="slide s8" data-title="Chốt kiến thức">
+    <div class="chrome-top">
+      <span class="eyebrow">Chốt · Tổng kết</span>
+      <span class="pagetag">Bài 5 · trang 33–41</span>
+    </div>
+    <div class="inner">
+      <div class="shead">
+        <div class="h-l">
+          <h2 class="rv" style="--d:.05s">Ba dạng bài — <span class="em">những cặp dễ nhầm</span></h2>
+        </div>
+        <div class="h-r rv" style="--d:.12s">
+          <span class="tag a">Dấu hiệu từ đề</span>
+        </div>
+      </div>
+
+      <div class="cols" style="grid-template-columns:1.05fr .95fr .85fr">
+        <div class="col">
+          <div class="card rv" style="--d:.14s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>
+              <h3>Ba dạng — dấu hiệu từ đề</h3>
+            </div>
+            <table class="tbl roomy">
+              <thead><tr><th>Dạng</th><th>Dấu hiệu</th><th>Ví dụ</th></tr></thead>
+              <tbody>
+                <tr class="rv" style="--d:.18s"><td class="k">1 · Tốc độ tức thời</td><td>“tốc độ thay đổi … tại \(t=\dots\)”, “sau … giây”, “đang tăng/giảm”</td><td>Luyện tập 1, 1.26</td></tr>
+                <tr class="rv" style="--d:.22s"><td class="k">2 · Tối ưu hoá</td><td>“lớn nhất/nhỏ nhất”, “càng sớm càng tốt”, “tối đa/tối thiểu”</td><td>Anh An, hộp trụ, 1.28</td></tr>
+                <tr class="rv" style="--d:.26s"><td class="k">3 · Kinh tế</td><td>“giá bán”, “doanh thu”, “lợi nhuận”, “giảm giá… bán thêm…”</td><td>Vé bóng đá, ti vi, 1.29</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card rv" style="--d:.3s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v6M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span>
+              <h3>Năm cặp dễ nhầm</h3>
+            </div>
+            <table class="tbl roomy">
+              <thead><tr><th>Cặp</th><th>Khác biệt</th></tr></thead>
+              <tbody>
+                <tr class="rv" style="--d:.34s"><td>Trung bình / tức thời</td><td>trên <b>đoạn</b> / tại <b>điểm</b></td></tr>
+                <tr class="rv" style="--d:.38s"><td>Độ dịch chuyển / quãng đường</td><td>\(y(t_2)-y(t_1)\) (có dấu) / \(\int|v|\)</td></tr>
+                <tr class="rv" style="--d:.42s"><td>Vận tốc / tốc độ</td><td>\(v\) (có dấu) / \(|v|\)</td></tr>
+                <tr class="rv" style="--d:.46s"><td>Chi phí biên / chi phí TB</td><td>\(C'(x)\) / \(C(x)/x\)</td></tr>
+                <tr class="rv" style="--d:.5s"><td>Doanh thu max / lợi nhuận max</td><td>ti vi: giá <b class="amber">9,5</b> / <b class="amber">8</b> triệu</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card rv" style="--d:.28s">
+            <div class="card-h"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h14v16H5z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span>
+              <h3>Nguồn & ghi chú</h3>
+            </div>
+            <ul class="src">
+              <li>SGK Toán 12 Tập 1 — Kết nối tri thức với cuộc sống, <b>trang 33–41</b>. NXB Giáo dục Việt Nam, Tổng Chủ biên Hà Huy Khoái, © 2024.</li>
+              <li>SGK <b>không có mục “Đáp án”</b>; đáp án Luyện tập / Vận dụng / Bài tập đến từ tính máy + đa nguồn web, đối chiếu chéo.</li>
+              <li>Bẫy số đã chốt: huyết áp <b>125</b> (không 123); \(C(x)=300x/(100-x)\); quãng đường 1.26 = <b>23 m</b>; ti vi <b>2 200</b> / giá <b>8 triệu</b>; “bị bỏ trống”.</li>
+              <li>Ảnh xạ trang: <b>PDF trang N = folio in N</b>.</li>
+            </ul>
+          </div>
+
+          <div class="card rv" style="--d:.44s">
+            <p class="small">Bài 5 · trang 33–41 · 12A1 THPT Vũng Tàu.<br>
+              <span class="muted">Dàn slide web — chạy offline, điều hướng ← →, <b>O</b> xem tổng quan, <b>R</b> xem lại, <b>F</b> toàn màn hình.</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="result rv" style="--d:.5s;margin-top:20px">
+        <div>
+          <span class="r-lab">Câu hỏi tổng kết</span>
+          <span class="r-main" style="font-size:30px">Một đại lượng, ba cách đặt tên — đạo hàm là gì?</span>
+        </div>
+        <div class="r-sub">Tốc độ tức thời · Cực trị · Chi phí / doanh thu / lợi nhuận biên</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HUD ================= -->
+  <div class="hud">
+    <span class="brand">Toán 12 · <b>Kết nối tri thức</b></span>
+    <div class="progress"><i id="prog"></i></div>
+    <div class="dots" id="dots"></div>
+    <div class="nav">
+      <button class="nbtn" id="prev" title="Trước (←)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="nbtn" id="next" title="Sau (→)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <span class="counter"><b id="cur">1</b> / 8</span>
+  </div>
+
+  <!-- ================= OVERVIEW ================= -->
+  <div id="overview">
+    <div class="ov-head">
+      <h3>Tổng quan <span class="muted" style="font-size:20px;font-family:var(--f-body)">· bấm một trang để nhảy tới</span></h3>
+      <button class="btn" id="ov-close"><span class="bic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6L6 18"/></svg></svg> Đóng <span class="muted mono" style="font-size:13px">O</span></button>
+    </div>
+    <div class="ov-grid" id="ov-grid"></div>
+  </div>
+
+  <!-- ================= HELP ================= -->
+  <div id="help">
+    <div class="sheet">
+      <h3>Phím tắt</h3>
+      <div class="krow"><span>Trang trước / sau</span><span><kbd>←</kbd> <kbd>→</kbd> <kbd>Space</kbd> <kbd>PgUp</kbd> <kbd>PgDn</kbd></span></div>
+      <div class="krow"><span>Nhảy tới trang</span><span><kbd>1</kbd>…<kbd>8</kbd> <kbd>Home</kbd> <kbd>End</kbd></span></div>
+      <div class="krow"><span>Tổng quan</span><span><kbd>O</kbd></span></div>
+      <div class="krow"><span>Xem lại hiệu ứng / secant</span><span><kbd>R</kbd></span></div>
+      <div class="krow"><span>Toàn màn hình</span><span><kbd>F</kbd></span></div>
+      <div class="krow"><span>Đóng / thoát</span><span><kbd>Esc</kbd></span></div>
+      <div style="margin-top:22px;text-align:right"><button class="btn primary" id="help-close">Bắt đầu thuyết trình</button></div>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+</div>
+</div>
+
+<script src="assets/katex/katex.min.js"></script>
+<script src="assets/katex/auto-render.min.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live view — Slide Toán 12 · Bài 5</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:#05070C;color:#F4F0E6;
+    font-family:"Be Vietnam Pro","Segoe UI",sans-serif;overflow:hidden}
+  body{display:flex;flex-direction:column}
+  header{display:flex;align-items:center;gap:16px;padding:12px 18px;
+    border-bottom:1px solid rgba(244,240,230,.10);background:#080B12;flex:0 0 auto}
+  header h1{font-family:"Playfair Display",Georgia,serif;font-size:19px;font-weight:800;letter-spacing:-.01em}
+  header .sp{flex:1}
+  .live{display:inline-flex;align-items:center;gap:8px;font-family:"IBM Plex Mono",monospace;
+    font-size:12px;letter-spacing:.14em;color:#58C786}
+  .live i{width:8px;height:8px;border-radius:99px;background:#58C786;box-shadow:0 0 10px #58C786;
+    animation:pulse 1.6s ease-in-out infinite}
+  .live.off{color:#8B94A4}.live.off i{background:#5D6675;box-shadow:none;animation:none}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  #stamp{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#5D6675}
+  .nav{display:flex;gap:8px;align-items:center}
+  .nav button{width:36px;height:36px;border-radius:99px;border:1px solid rgba(244,240,230,.14);
+    background:rgba(255,255,255,.04);color:#F4F0E6;font-size:16px;cursor:pointer;
+    transition:all .25s cubic-bezier(.22,.8,.24,1)}
+  .nav button:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+  .nav button:active{transform:scale(.94)}
+  #cnt{font-family:"IBM Plex Mono",monospace;font-size:13px;color:#8B94A4;min-width:56px;text-align:center}
+  #cnt b{color:#E7B44B;font-size:16px}
+  main{flex:1;min-height:0;position:relative;display:flex}
+  #stageWrap{position:absolute;inset:0;overflow:hidden}
+  #frame{width:1920px;height:1080px;position:absolute;top:0;left:0;transform-origin:top left;
+    border:0;background:#070A11}
+  #bar{position:absolute;right:14px;bottom:12px;display:flex;gap:6px}
+  #bar button{padding:6px 11px;border-radius:9px;border:1px solid rgba(244,240,230,.14);
+    background:rgba(8,11,18,.85);color:#C9CFDA;font-size:12px;cursor:pointer}
+  #bar button:hover{border-color:#E7B44B;color:#E7B44B}
+</style>
+</head>
+<body>
+<header>
+  <h1>Live view · Toán 12 — Bài 5</h1>
+  <span class="live" id="live"><i></i> LIVE</span>
+  <span id="stamp">—</span>
+  <span class="sp"></span>
+  <div class="nav">
+    <button id="prev" title="Trang trước (←)">‹</button>
+    <span id="cnt"><b>1</b> / 8</span>
+    <button id="next" title="Trang sau (→)">›</button>
+  </div>
+</header>
+<main>
+  <div id="stageWrap"><iframe id="frame" src="index.html?only=1" loading="eager"></iframe></div>
+  <div id="bar">
+    <button id="grid">Chia 4 cột</button>
+    <button id="open">Mở bản trượt ↗</button>
+  </div>
+</main>
+<script>
+(function () {
+  var N = 8, cur = 1, lastMtime = null, timer = null;
+  var frame = document.getElementById('frame');
+  var wrap = document.getElementById('stageWrap');
+  var liveEl = document.getElementById('live');
+  var stamp = document.getElementById('stamp');
+  var cnt = document.getElementById('cnt');
+
+  function fit() {
+    var s = Math.min(wrap.clientWidth / 1920, wrap.clientHeight / 1080);
+    var w = Math.round(1920 * s), h = Math.round(1080 * s);
+    frame.style.transform = 'scale(' + s + ')';
+    frame.style.left = Math.round((wrap.clientWidth - w) / 2) + 'px';
+    frame.style.top = Math.round((wrap.clientHeight - h) / 2) + 'px';
+  }
+  function go(n) {
+    cur = Math.max(1, Math.min(N, n));
+    frame.src = 'index.html?only=' + cur;
+    cnt.innerHTML = '<b>' + cur + '</b> / ' + N;
+  }
+  function setLive(on) {
+    liveEl.classList.toggle('off', !on);
+    liveEl.innerHTML = '<i></i> ' + (on ? 'LIVE' : 'IDLE');
+  }
+  function probe() {
+    if (location.protocol === 'file:') {
+      liveEl.classList.add('off');
+      liveEl.innerHTML = '<i></i> LOCAL';
+      stamp.textContent = 'mở bản trượt ở trên để xem toàn màn hình';
+      return;
+    }
+    fetch('/__mtime', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (lastMtime === null) { lastMtime = j.mtime; return; }
+        if (j.mtime !== lastMtime) {
+          lastMtime = j.mtime;
+          stamp.textContent = 'cập nhật ' + new Date().toLocaleTimeString('vi-VN');
+          go(cur);                       // tải lại đúng trang đang xem
+        }
+        setLive(true);
+      })
+      .catch(function () {
+        setLive(false);
+        stamp.textContent = 'không kết nối được máy chủ cục bộ';
+      });
+  }
+  document.getElementById('prev').onclick = function () { go(cur - 1); };
+  document.getElementById('next').onclick = function () { go(cur + 1); };
+  document.getElementById('open').onclick = function () { window.open('index.html#' + cur, '_blank'); };
+  document.getElementById('grid').onclick = function () {
+    window.open('live.html?grid=1', '_blank');
+  };
+  window.addEventListener('resize', fit);
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') go(cur - 1);
+    else if (e.key === 'ArrowRight' || e.key === ' ') go(cur + 1);
+    else if (e.key >= '1' && e.key <= '8') go(parseInt(e.key, 10));
+  });
+  fit(); go(1); probe();
+  if (location.protocol !== 'file:') timer = setInterval(probe, 1500);
+  window.addEventListener('beforeunload', function () { if (timer) clearInterval(timer); });
+})();
+</script>
+</body>
+</html>
